@@ -11,7 +11,6 @@ bash "change Logrotate.conf" do
 	vFIL="/etc/logrotate.d/tomcat8daily"
 		sed -i 's/weekly/daily/g' $vFIL
 		sed -i 's/rotate /#rotate\nrotate 120/g' $vFIL
-		sed -i 's/#compress/compress/g' $vFIL		
-		
+		sed -i 's/#compress/compress/g' $vFIL	
   EOH
 end
