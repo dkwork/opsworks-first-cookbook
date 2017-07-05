@@ -1,4 +1,4 @@
-bash "change Logrotate.conf" do
+bash "change Logrotate.tomcat-conf" do
   user "root"
   code <<-EOH
   vSTI01="/etc/logrotate.d"
