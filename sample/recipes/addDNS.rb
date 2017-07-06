@@ -69,7 +69,7 @@ esac
 exit
 EOF
 sudo touch /tmp/djura.added-addDNS
-sudo /bin/chmod 700 /etc/rc.d/init.d/addDNS
+sudo /bin/chmod 755 /etc/rc.d/init.d/addDNS
 sudo /sbin/chkconfig --add addDNS
 sudo /sbin/chkconfig addDNS on
 sudo /sbin/service addDNS start
