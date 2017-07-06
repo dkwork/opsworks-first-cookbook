@@ -2,8 +2,12 @@ bash "adding service addDNS" do
 	user "root"
 	code <<-EOH
 
+	sudo chkconfig addDNS off
+	sudo chkconfig addDNS --del
 	sudo rm  /etc/rc.d/init.d/addDNS > /dev/null 2>&1
+
 	touch /etc/rc.d/init.d/addDNS
+
 	cat <<EOF | sudo tee /etc/rc.d/init.d/addDNS
 
 #!/bin/bash
@@ -73,6 +77,8 @@ sudo /bin/chmod 755 /etc/rc.d/init.d/addDNS
 sudo /sbin/chkconfig --add addDNS
 sudo /sbin/chkconfig addDNS on
 sudo /sbin/service addDNS start
+
+
 
   EOH
 end
