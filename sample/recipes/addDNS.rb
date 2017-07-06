@@ -26,8 +26,7 @@ bash "adding service addDNS" do
 . /etc/rc.d/init.d/functions
 
 function vINIT {
-	#Remove nameserver 8.8.8.8
-	#Remove nameserver 8.8.4.4
+	#Remove nameserver 8.8.8.8 + nameserver 8.8.4.4
 	sed -i "/Added by service addDNS/d" /etc/resolv.conf 
 	sed -i "/Added by systemctl addDNS/d" /etc/resolv.conf 	
 	sed -i "/8.8.8.8/d" /etc/resolv.conf 
@@ -36,8 +35,7 @@ function vINIT {
 
 start() 
 {
-	#Add nameserver 8.8.8.8
-	#Add nameserver 8.8.4.4		
+	#Add nameserver 8.8.8.8 + nameserver 8.8.4.4
 	DNS1="8.8.8.8"
 	DNS2="8.8.4.4"
 	vINIT
@@ -48,8 +46,7 @@ start()
 
 stop() 
 {
-	#Remove nameserver 8.8.8.8
-	#Remove nameserver 8.8.4.4
+	#Remove nameserver 8.8.8.8 + nameserver 8.8.4.4
 	echo "addDNS - stopper"
 	vINIT	
 }
@@ -71,7 +68,7 @@ case "$1" in
 esac
 exit
 EOF
-
+sudo touch /tmp/djura.added-addDNS
 sudo chmod 700 /etc/rc.d/init.d/addDNS
 sudo chkconfig --add addDNS
 sudo chkconfig addDNS on
