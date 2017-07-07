@@ -13,13 +13,14 @@ bash "change Logrotate.tomcat-conf" do
 	do
 	if [ -f $vFIL ]
 	then
-		printf ".. (EXIST)\t ..modifying \"$vFIL\" ..\n"
-		vDATE=`date '+%Y%m%d'`		
-		cp -p $vFIL /tmp/$vFIL.$vDATE
+		vDATE=`date '+%Y%m%d'`
+		vBaseName=`/usr/bin/basename $vFIL`
+		cp -p $vFIL /tmp/$vBaseName.chef.$vDATE
+		printf ".. (EXIST)\t ..modifying \"$vFIL\" ..\n"		
 		#sed 's/^weekly/daily/g; s/^rotate 4/rotate 120/g; s/^#compress/compress/g' $vFIL
 		sed -i 's/^size 10M/size 1G/g; s/^rotate [45]/rotate 120/g; s/^#compress/compress/g; s/^dateext/#dateext/g; s/^dateformat/#dateformat/g' $vFIL
-	else
-		printf ".. (ERR)\t ..modifying \"$vFIL\" . File doesn't exist..\n"
+#	else
+#		printf ".. (ERR)\t ..modifying \"$vFIL\" . File doesn't exist..\n"
 	fi
 	done	
 EOH
