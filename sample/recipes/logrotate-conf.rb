@@ -5,6 +5,6 @@ bash "change Logrotate.conf" do
 	#/etc/logrotate.conf"
 	vFIL="/etc/logrotate.conf"
 	cp -p $vFIL $vFIL.$vDATE
-	sed -i 's/^weekly/daily/g; s/^rotate [45]/rotate 120/g; s/^#compress/compress/g' $vFIL
+	sed -i 's/^weekly/daily/g; s/^rotate [1234567890]/rotate 120/g; s/^#compress/compress/g' $vFIL
   EOH
 end
